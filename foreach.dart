@@ -3,7 +3,7 @@ void main() {
   List<int> numbers = [1, 2, 3, 4, 5];
   numbers.forEach((element) {
     sum += element;
-    print("The sum is increaing by $element and sum is $sum");
+    print(" vv The sum is increaing by $element and sum is $sum");
   });
 
 }
