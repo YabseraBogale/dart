@@ -3,11 +3,10 @@ import 'package:symmetric_difference/symmetric_difference.dart';
 void main(List<String> arguments) {
   var A = GiveRandom(5, 20);
   var B = GiveRandom(5, 20);
-  var C = GiveRandom(5, 20);
   print("set A: $A");
   print("set B: $B");
-  print("set C: $C");
-  print("the difference A △ B ${A.difference(B)}");
-  var result = C.difference(A.difference(B));
-  print("the result of ( A △ B ) △ C $result");
+  print("the difference A - B ${A.difference(B)}");
+  print("the difference B - A ${B.difference(A)}");
+  var result = A.difference(B).union(B.difference(A));
+  print("the result of A △ B $result");
 }
