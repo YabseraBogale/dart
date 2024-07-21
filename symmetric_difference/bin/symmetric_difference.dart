@@ -1,3 +1,4 @@
+import 'dart:js_interop';
 import 'dart:math';
 
 void main(List<String> arguments) {
