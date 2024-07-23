@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:wikiapp/wikiapp.dart' as wikiapp;
 
 void main(List<String> arguments) async {
@@ -10,5 +11,6 @@ void main(List<String> arguments) async {
   final uri = api + search.toString().replaceAll(" ", "&");
   final httprequest = Uri.parse(uri);
   final httpinfo = await http.read(httprequest);
-  print(httpinfo);
+  final httpjson = json.decode(httpinfo) as Map<String, dynamic>;
+  print(httpjson["query"]);
 }
