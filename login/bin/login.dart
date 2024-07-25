@@ -8,5 +8,5 @@ void main() async {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: jsonEncode(<String, String>{"log": "admin", "pwd": "admin"}));
-  print(respone);
+  print(respone.body);
 }
