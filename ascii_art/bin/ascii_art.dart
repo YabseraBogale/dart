@@ -1,5 +1,6 @@
-import 'package:ascii_art/ascii_art.dart' as ascii_art;
+import 'package:image/image.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${ascii_art.calculate()}!');
+void main() async {
+  Image? image = await decodePngFile("wall.png");
+  print("the length ${image?.length}\n");
 }
