@@ -9,6 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   sqlite3: ^2.4.7
+  mailer: ^6.2.0
   # path: ^1.8.0
 
 dev_dependencies:
