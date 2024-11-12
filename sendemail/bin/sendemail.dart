@@ -9,19 +9,21 @@ void main(List<String> arguments) async{
     return content;
   });
   final smtpServer=gmail("cheretaaddis@gmail.com","zgzd xtlt emlc tzfb");
-  final results = db.select("select * from userdata where Country='Angola' limit 10");
+  final results = db.select("select * from userdata where Country='Angola' and Sent='not_sent' limit 10");
   for (final result in results) {
-    print(result['Email']);
+
      final message = Message()
     ..from = Address("cheretaaddis@gmail.com", 'YabseraBogale')
-    ..recipients.add("yabserapython@gmail.com")
+    ..recipients.add(result['Email'])
     ..subject = 'YabseraBogale Software Developer'
-    ..text = 'This is the plain text.\nThis is line 2 of the text part.'
     ..html = index.toString();
 
   try {
     final sendReport = await send(message, smtpServer);
-    print('Message sent: ${sendReport.toString()}');
+    print("Message: ${sendReport.toString()}");
+    final stmt=db.prepare("Update userdata set Sent='sent' where Email=(?)");
+    stmt.execute(sendReport.mail.recipients);
+
   } on MailerException catch (e) {
     print('Message not sent.');
     for (var p in e.problems) {
