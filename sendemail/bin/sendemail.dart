@@ -3,22 +3,35 @@ import 'package:sqlite3/sqlite3.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 
+
 void main(List<String> arguments) async{
+  // the password is changed but this is great
+  final smtpServer = SmtpServer(
+    'mail.frielvh.com',
+    username: 'yabsera@frielvh.com',
+    password: '99o*90]QOi[*',
+    port: 587,
+    ignoreBadCertificate: true, // Optional, useful for self-signed certificates
+    ssl: false,
+    allowInsecure: true, // Useful for STARTTLS connections
+  );
+
   final db = sqlite3.open("gold.db");
   var index = await File("index.html").readAsString().then((String content) {
     return content;
   });
-  final smtpServer=gmail("cheretaaddis@gmail.com","zgzd xtlt emlc tzfb");
+
   final results = db.select("select * from userdata where Country='Angola' and Sent='not_sent' limit 10");
   for (final result in results) {
 
      final message = Message()
-    ..from = Address("cheretaaddis@gmail.com", 'YabseraBogale')
+    ..from = Address("yabsera@frielvh.com", 'YabseraBogale')
     ..recipients.add(result['Email'])
     ..subject = 'YabseraBogale Software Developer'
     ..html = index.toString();
 
   try {
+
     final sendReport = await send(message, smtpServer);
     print("Message: ${sendReport.toString()}");
     final stmt=db.prepare("Update userdata set Sent='sent' where Email=(?)");
