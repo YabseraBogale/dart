@@ -8,8 +8,8 @@ void main(List<String> arguments) async{
   // the password is changed but this is great
   final smtpServer = SmtpServer(
     'smtp.gmail.com',
-    username: 'cheretaaddis@gmail.com',
-    password: 'zgzd xtlt emlc tzfb',
+    username: '',
+    password: '',
     port: 587,
     ignoreBadCertificate: true, // Optional, useful for self-signed certificates
     ssl: false,
