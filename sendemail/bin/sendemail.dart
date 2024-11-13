@@ -7,15 +7,15 @@ import 'package:mailer/smtp_server.dart';
 void main(List<String> arguments) async{
   // the password is changed but this is great
   final smtpServer = SmtpServer(
-    'mail.frielvh.com',
-    username: 'yabsera@frielvh.com',
-    password: '99o*90]QOi[*',
+    'smtp.gmail.com',
+    username: 'cheretaaddis@gmail.com',
+    password: 'zgzd xtlt emlc tzfb',
     port: 587,
     ignoreBadCertificate: true, // Optional, useful for self-signed certificates
     ssl: false,
     allowInsecure: true, // Useful for STARTTLS connections
   );
-
+  final resume=File("resume.pdf");
   final db = sqlite3.open("gold.db");
   var index = await File("index.html").readAsString().then((String content) {
     return content;
@@ -28,7 +28,8 @@ void main(List<String> arguments) async{
     ..from = Address("yabsera@frielvh.com", 'YabseraBogale')
     ..recipients.add(result['Email'])
     ..subject = 'YabseraBogale Software Developer'
-    ..html = index.toString();
+    ..html = index.toString()
+    ..attachments.add(FileAttachment(resume));
 
   try {
 
