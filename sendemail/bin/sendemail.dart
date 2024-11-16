@@ -20,7 +20,7 @@ void main(List<String> arguments) async{
     return content;
   });
 
-  final results = db.select("select * from userdata where Country='Angola' and Sent='not_sent' limit 10");
+  final results = db.select("select * from userdata where Country='USA' and Sent='not_sent' limit 50");
   for (final result in results) {
 
      final message = Message()
