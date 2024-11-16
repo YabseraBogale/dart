@@ -3,13 +3,12 @@ import 'package:sqlite3/sqlite3.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 
-
 void main(List<String> arguments) async{
   // the password is changed but this is great
   final smtpServer = SmtpServer(
     'smtp.gmail.com',
-    username: '',
-    password: '',
+    username: 'cheretaaddis@gmail.com',
+    password: 'zgzd xtlt emlc tzfb',
     port: 587,
     ignoreBadCertificate: true, // Optional, useful for self-signed certificates
     ssl: false,
