@@ -8,7 +8,7 @@ void main() async {
     await Process.run('screencapture', ['-x', 'screenshot.png']);
     print('Screenshot saved as screenshot.png on macOS!');
   } else if (Platform.isLinux) {
-    await Process.run('import', ['-window', 'root', 'screenshot.png']);
+    await Process.run('spectacle', [' -b', '-o', 'screenshot.png']);
     print('Screenshot saved as screenshot.png on Linux!');
   } else {
     print('Platform not supported for screen capture.');
