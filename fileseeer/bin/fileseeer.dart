@@ -1,5 +1,28 @@
-import 'package:fileseeer/fileseeer.dart' as fileseeer;
+import 'dart:io';
+void main() async{
 
-void main(List<String> arguments) {
-  print('Hello world: ${fileseeer.calculate()}!');
+  var server=await HttpServer.bind(InternetAddress.loopbackIPv4,8080);
+  List<WebSocket> clients=[];
+  await for (HttpRequest request in server){
+    if(request.uri.path=="/ws" && WebSocketTransformer.isUpgradeRequest(request)){
+      var socket=await WebSocketTransformer.upgrade(request);
+      socket.listen(
+             (message){
+                for(var client in clients){
+                  if(client!=socket){
+                    client.add(message);
+                  }
+                }
+            },
+            onError: (error){
+              print("Error: $error");
+            }
+      );
+
+    } else{
+      request.response.statusCode=HttpStatus.notFound;
+      await request.response.close();
+    }
+  }
+
 }
