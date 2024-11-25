@@ -7,7 +7,7 @@
 <body>
     <div class="main">
         <h1>System Information</h1>
-        <pre>Waiting for Connection... </pre>
+        <pre id="event">Waiting for Connection... </pre>
     </div>
     <style>
         *{
@@ -27,7 +27,8 @@
             console.log("connected to server")
         }
         ws.onmessage=(event)=>{
-
+            const prev=document.getElementById("event")
+            prev.innerText=event.data
         }
         ws.onclose=()=>{
             console.log("server closed")

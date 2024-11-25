@@ -1,7 +1,9 @@
 import 'dart:io';
+
 void main() async{
     var server=await HttpServer.bind(InternetAddress.loopbackIPv4,8080);
     List<WebSocket> clients=[];
+
     await for(HttpRequest request in server){
         if(request.uri.path=="/ws" && WebSocketTransformer.isUpgradeRequest(request)){
           var socket=await WebSocketTransformer.upgrade(request);
@@ -22,6 +24,7 @@ void main() async{
                   print("Error: $error");
                 }
           );
+          socket.add("Hello World");
 
         } else{
           request.response.statusCode=HttpStatus.notFound;
