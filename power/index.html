@@ -22,14 +22,15 @@
         }
     </style>
     <script>
-        const ws=new WebSocket("ws://localhost:8080");
-        ws.onopen=()=>{
-            console.log("connected to server")
-        }
-        ws.onmessage=(event)=>{
+        const ws=new WebSocket("ws://localhost:8080/ws");
+         ws.onmessage=(event)=>{
             const prev=document.getElementById("event")
             prev.innerText=event.data
         }
+        ws.onopen=()=>{
+            console.log("connected to server")
+        }
+
         ws.onclose=()=>{
             console.log("server closed")
         }

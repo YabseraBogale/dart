@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:async';
 void main() async{
     var server=await HttpServer.bind(InternetAddress.loopbackIPv4,8080);
     List<WebSocket> clients=[];
@@ -17,14 +17,18 @@ void main() async{
                   }
                 },
                 onDone: (){
-                  request.response.close();
+                  clients.remove(socket);
 
                 },
                 onError: (error){
                   print("Error: $error");
                 }
           );
-          socket.add("Hello World");
+          Timer.periodic(Duration(seconds: 5),(timer) async{
+              var result=await Process.run("git",["status"]);
+              socket.add(result.stdout.toString());
+
+          });
 
         } else{
           request.response.statusCode=HttpStatus.notFound;
