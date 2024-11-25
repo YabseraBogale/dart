@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>
+    Power
+    </title>
+    </head>
+<body>
+    <div class="main">
+        <h1>System Information</h1>
+        <pre>Waiting for Connection... </pre>
+    </div>
+    <style>
+        *{
+            font-family: 'DM Mono Medium';
+            font-size: 25px;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        const ws=new WebSocket("ws://localhost:8080");
+        ws.onopen=()=>{
+            console.log("connected to server")
+        }
+        ws.onmessage=(event)=>{
+
+        }
+        ws.onclose=()=>{
+            console.log("server closed")
+        }
+        ws.onerror=(err)=>{
+            console.log(err);
+        }
+    </script>
+    </body>
+</html>
