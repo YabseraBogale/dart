@@ -1,6 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
+import 'package:sqlite3/sqlite3.dart';
+import 'dart:io';
 void main() async{
+  final db=sqlite3.open("merkato.db");
   var a=[];
   final regx=RegExp(r"directory/\d+-",multiLine: true);
  for(var i=1;i<53;i++){
@@ -37,8 +40,19 @@ void main() async{
     print(e);
   }
 }
-for(var link in a){
-  print(link);
+
+for(var i=0;i<a.length;i++){
+  print("data at $i");
+  try{
+    final data=parse(a[i]);
+    final stmt=db.prepare("Insert into Company(CompanyName,CompanyLink,CompanyInformation) values(?,?,'not yet')");
+    stmt.execute([data.text,data.attributes['href']]);
+    if(i%100==0 && i!=0){
+      sleep(Duration(seconds: 3));
+    }
+  }catch(e){
+    print(e);
+  }
 }
 
 }
