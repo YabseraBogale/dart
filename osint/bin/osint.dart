@@ -9,9 +9,9 @@ void main(List<String> arguments) async{
         for(final row in result){
           var website=await http.get(Uri.parse(row['Link']));
           if(website.statusCode!=200){
-            print(row['Link']);
+            print("Link: ${row['Link']}, statusCode: ${website.statusCode}");
           }else{
-            print(row['Link']);
+            print("Link: ${row['Link']}, statusCode: ${website.statusCode}");
           }
         }
     } catch(e){
