@@ -8,16 +8,10 @@ void main(List<String> arguments) async{
         final result=db.select("select Link from Company where Link!='null'");
         for(final row in result){
           var website=await http.get(Uri.parse(row['Link']));
-          if(website.statusCode==200){
-            for(var key in website.headers.keys){
-              try{
-                print(website.headers[key]);
-              }catch(e){
-                print(e);
-              }
-            }
-          } else{
-            print(website.statusCode);
+          if(website.statusCode!=200){
+            print(row['Link']);
+          }else{
+            print(row['Link']);
           }
         }
     } catch(e){
