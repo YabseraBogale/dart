@@ -13,7 +13,7 @@ void main(List<String> arguments) async{
             if(website.statusCode!=200){
               print("Link: ${row['Link']}, statusCode: ${website.statusCode}");
             }else{
-              print(website.headers);
+              print(website.headers.toString());
             }
           } catch(e){
             print(e);
