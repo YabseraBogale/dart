@@ -13,7 +13,8 @@ void main(List<String> arguments) async{
             if(website.statusCode!=200){
               print("Link: ${row['Link']}, statusCode: ${website.statusCode}");
             }else{
-              print(website.headers.toString());
+              final stmt=db.prepare("Update Company Set ServerInfo=? where Link=?");
+
             }
           } catch(e){
             print(e);
