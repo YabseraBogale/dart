@@ -10,7 +10,7 @@ void main(List<String> arguments) async{
         for(final row in result){
           print(row['Link']);
           count+=1;
-          print(count);
         }
+          print(count);
 
 }
