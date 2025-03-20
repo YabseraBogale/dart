@@ -13,8 +13,11 @@ void main(List<String> arguments) async {
   router.get("/", (Request req) {
     return staticHandler(req);
   });
-  router.get("/go", (Request req) {
-    return staticHandler(req);
+  router.post("/submit_form", (Request req) async {
+    final body = await req.readAsString();
+    final data = Uri.splitQueryString(body);
+    print(data);
+    return Response.ok(data["name"]);
   });
   final handler = Pipeline().addMiddleware(logRequests()).addHandler(router);
   final server = await shelf_io.serve(handler, InternetAddress.anyIPv4, 8080);
