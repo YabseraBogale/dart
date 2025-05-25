@@ -1,5 +1,7 @@
-import 'package:port_scanner/port_scanner.dart' as port_scanner;
+import 'package:http/http.dart' as http;
 
-void main(List<String> arguments) {
-  print('Hello world: ${port_scanner.calculate()}!');
+void main(List<String> arguments) async {
+  final uri = Uri.https("google.com", "/");
+  final req = await http.get(uri);
+  print(req.statusCode);
 }
