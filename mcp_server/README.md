@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Mcp-Server
+
+https://modelcontextprotocol.io/specification/2025-03-26
